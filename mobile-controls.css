@@ -1,3 +1,7 @@
+/* Protect the complete touch surface, including captions and deck gaps. */
+.control-deck,.control-deck *{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;-webkit-user-drag:none;-webkit-tap-highlight-color:transparent}
+.control-deck span,.control-deck .joystick-art{pointer-events:none}
+body.mobile-playing .arcade,body.mobile-playing .arcade *{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}
 .control-start{text-align:center}.control-start>span{display:block;margin-top:8px;font-size:8px;color:#4c5b4c}.control-deck [data-key]{touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}.control-deck [data-key].is-pressed{transform:translateY(3px);filter:brightness(1.2)}.direction-pad [data-key=ArrowLeft]{grid-area:left}.direction-pad [data-key=ArrowRight]{grid-area:right}.direction-pad [data-key=ArrowDown]{grid-area:down}
 @media(max-width:900px){
  :root{--pad-size:clamp(44px,12.8vw,56px);--action-size:clamp(56px,16vw,70px);--controller-height:calc(157px + env(safe-area-inset-bottom,0px));--mobile-board-height:min(calc(100svh - 250px),480px,calc((100vw - 170px)*2))}

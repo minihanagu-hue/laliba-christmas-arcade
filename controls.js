@@ -1,6 +1,14 @@
 'use strict';
 window.installArcadeControls=({root,perform,isPlaying})=>{
  if(!root)return {releaseAll(){}};const held=new Map(),directions=new Set(['ArrowLeft','ArrowRight','ArrowDown']);
+ // iOS callouts can originate on captions or empty deck space, not only buttons.
+ const blockDefault=event=>{if(event.cancelable!==false)event.preventDefault()};
+ root.addEventListener('contextmenu',blockDefault);
+ root.addEventListener('selectstart',blockDefault);
+ root.addEventListener('dragstart',blockDefault);
+ root.addEventListener('touchstart',event=>{if(!event.target.closest?.('#cabinetStart'))blockDefault(event)},{passive:false});
+ root.addEventListener('touchmove',blockDefault,{passive:false});
+
  function release(id){const h=held.get(id);if(!h)return;clearTimeout(h.delay);clearInterval(h.interval);held.delete(id);h.button.classList.remove('is-pressed');try{if(h.button.hasPointerCapture(id))h.button.releasePointerCapture(id)}catch{}}
  function releaseAll(){for(const id of [...held.keys()])release(id)}
  root.querySelectorAll('[data-key]').forEach(button=>{
