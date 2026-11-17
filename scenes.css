@@ -1,0 +1,10 @@
+/* Only the screen artwork changes. Board canvas, controls and stored data stay intact. */
+.arcade[data-scene=snow-market]{background-image:url('public/assets/scenes/01-snow-market.svg');background-color:#15233b}
+.arcade[data-scene=lantern-village]{background-image:url('public/assets/scenes/02-lantern-village.svg');background-color:#36213d}
+.arcade[data-scene=aurora-forest]{background-image:url('public/assets/scenes/03-aurora-forest.svg');background-color:#102e3c}
+.arcade[data-scene=star-festival]{background-image:url('public/assets/scenes/04-star-festival.svg');background-color:#321e3d}
+.arcade[data-scene]{background-position:center;background-size:cover;background-repeat:no-repeat;image-rendering:pixelated}
+.arcade[data-scene] .panel{background:#0c1731b8}
+.scene-name{display:block;font:8px/1.6 ui-monospace,monospace;color:#f6dfa2;letter-spacing:.02em;margin:5px 0 0}
+@media(max-width:900px){.arcade[data-scene]{background-position:left bottom}.scene-name{font-size:7px;line-height:1.5}}
+/* Immediate, static changes: no flashes, animation or forced motion at level-up. */

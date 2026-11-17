@@ -1,0 +1,5 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const screen={dataset:{},setAttribute(k,v){this[k]=v}},level={textContent:'01'},caption={textContent:''};let notify;
+vm.runInNewContext(fs.readFileSync(require('node:path').join(__dirname,'../scenes.js'),'utf8'),{document:{querySelector:()=>screen,getElementById:id=>id==='level'?level:caption},MutationObserver:class{constructor(cb){notify=cb}observe(){}}});
+for(const [n,id] of [[1,'snow-market'],[3,'snow-market'],[4,'lantern-village'],[6,'lantern-village'],[7,'aurora-forest'],[9,'aurora-forest'],[10,'star-festival'],[99,'star-festival'],[1,'snow-market'],['invalid','snow-market']]){level.textContent=String(n);notify();assert.equal(screen.dataset.scene,id);assert(caption.textContent.startsWith('SCENE'));assert(screen['aria-label'].includes('街機遊戲畫面'))}
+console.log('PASS: all scene boundaries, multi-level jumps, high levels, restart to level 1, invalid-level fallback, accessible caption; no game or storage writes');
